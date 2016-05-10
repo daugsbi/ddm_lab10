@@ -17,7 +17,7 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
  * @source http://johnnyprogrammer.blogspot.ch/2012/01/custom­file­output­in­hadoop.html 
  */
 public class SaleAnalysisRecordWriter extends RecordWriter<Text, DoubleWritable> { 		 
-	final static DecimalFormat decimalFormat = new DecimalFormat("###,###.##"); 
+	final static DecimalFormat decimalFormat = new DecimalFormat("###'###.##"); 
 	final static String delimiter = "\t";
 	private DataOutputStream out; 
 	

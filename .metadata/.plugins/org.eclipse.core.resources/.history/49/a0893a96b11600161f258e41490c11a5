@@ -38,7 +38,6 @@ public class SaleAnalysisMapper extends Mapper<LongWritable, Text, Text, DoubleW
 				category.set(values[indexCategory]);
 				amount.set(Double.parseDouble(values[indexAmount]));	
 				
-				// values[indexAmount] ist ein gültiger Double Wert
 				context.write(category, amount);
 			} catch (NumberFormatException e) {
 				// Kein Output, da values[indexAmount] kein gültiger Double Wert

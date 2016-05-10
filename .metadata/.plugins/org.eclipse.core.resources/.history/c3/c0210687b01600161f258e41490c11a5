@@ -36,7 +36,6 @@ public class DictionaryReducer extends Reducer<Text, Text, Text, Text> {
 		
 		translations.set(sb.toString());
 		
-		// Schreibt die Übersetzungen in den Context raus
 		context.write(key, translations);
 	}
 }

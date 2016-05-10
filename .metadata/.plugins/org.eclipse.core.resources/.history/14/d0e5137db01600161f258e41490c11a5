@@ -25,7 +25,6 @@ public class DictionaryReducer extends Reducer<Text, Text, Text, Text> {
 	public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
         StringBuilder sb = new StringBuilder();
 		
-        // Fügt die Übersetzungen zusammen
 		for (Text val : values){
 			if (sb.length() > 0) {
 				sb.append("|");
@@ -36,7 +35,6 @@ public class DictionaryReducer extends Reducer<Text, Text, Text, Text> {
 		
 		translations.set(sb.toString());
 		
-		// Schreibt die Übersetzungen in den Context raus
 		context.write(key, translations);
 	}
 }

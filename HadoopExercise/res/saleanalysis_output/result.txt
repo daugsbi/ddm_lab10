@@ -1,18 +1,18 @@
-Baby	57491808.44
-Books	57450757.91
-CDs	57410753.04
-Cameras	57299046.64
-Children's Clothing	57624820.94
-Computers	57315406.32
-Consumer Electronics	57452374.13
-Crafts	57418154.50
-DVDs	57649212.14
-Garden	57539833.11
-Health and Beauty	57481589.56
-Men's Clothing	57621279.04
-Music	57495489.70
-Pet Supplies	57197250.24
-Sporting Goods	57599085.89
-Toys	57463477.11
-Video Games	57513165.58
-Women's Clothing	57434448.97
+Baby	57,491,808.44
+Books	57,450,757.91
+CDs	57,410,753.04
+Cameras	57,299,046.64
+Children's Clothing	57,624,820.94
+Computers	57,315,406.32
+Consumer Electronics	57,452,374.13
+Crafts	57,418,154.5
+DVDs	57,649,212.14
+Garden	57,539,833.11
+Health and Beauty	57,481,589.56
+Men's Clothing	57,621,279.04
+Music	57,495,489.7
+Pet Supplies	57,197,250.24
+Sporting Goods	57,599,085.89
+Toys	57,463,477.11
+Video Games	57,513,165.58
+Women's Clothing	57,434,448.97

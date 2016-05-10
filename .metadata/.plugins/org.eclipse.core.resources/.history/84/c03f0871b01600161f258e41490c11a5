@@ -25,7 +25,6 @@ public class DictionaryMapper extends Mapper<Text, Text, Text, Text> {
 	public void map(Text key, Text value, Context context) throws IOException, InterruptedException {
 		String line = value.toString();
 		
-		// Splittet die Übersetzungen, welche mit einem "," getrennt sind, auf und schreibt sie in den Context
 		for (String word : line.split(",")) {
 			translation.set(word.trim());
 			

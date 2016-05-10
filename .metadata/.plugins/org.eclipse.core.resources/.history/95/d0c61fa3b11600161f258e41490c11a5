@@ -26,7 +26,6 @@ public class SaleAnalysisReducer extends Reducer<Text, DoubleWritable, Text, Dou
 	public void reduce(Text key, Iterable<DoubleWritable> values, Context context) throws IOException, InterruptedException {
 		double total = 0;
 		
-		// Summe berechnen für eine Produktkategorie
 		for (DoubleWritable val : values) {
 			total += val.get();
 		}
