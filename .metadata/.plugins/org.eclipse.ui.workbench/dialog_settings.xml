@@ -9,18 +9,22 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="494" key="dialogWidth"/>
-		<item value="369" key="dialogHeight"/>
+		<item value="476" key="dialogWidth"/>
+		<item value="351" key="dialogHeight"/>
 		<list key="orderedProviders">
 			<item value="org.eclipse.ui.actions"/>
+			<item value="org.eclipse.ui.preferences"/>
 		</list>
 		<list key="textArray">
-			<item value="organ"/>
+			<item value="organi"/>
+			<item value="organiz"/>
 		</list>
 		<list key="orderedElements">
 			<item value="org.eclipse.jdt.ui.actions.OrganizeImports"/>
+			<item value="org.eclipse.jdt.ui.preferences.ImportOrganizePreferencePage"/>
 		</list>
 		<list key="textEntries">
+			<item value="1"/>
 			<item value="1"/>
 		</list>
 	</section>

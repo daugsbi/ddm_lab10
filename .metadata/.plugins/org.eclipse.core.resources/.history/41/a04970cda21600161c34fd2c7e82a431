@@ -1,0 +1,87 @@
+package ch.fhnw.ddm.HadoopExercise.Dictionary;
+
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.Configured;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.Tool;
+import org.apache.hadoop.util.ToolRunner;
+
+import ch.fhnw.ddm.HadoopExercise.SaleAnalysis.SaleAnalysisFileOutputFormat;
+import ch.fhnw.ddm.HadoopExercise.SaleAnalysis.SaleAnalysisMapper;
+import ch.fhnw.ddm.HadoopExercise.SaleAnalysis.SaleAnalysisReducer;
+
+public class Dictionary extends Configured implements Tool {
+	
+	final static String[] inputFiles = { "res//French.txt", "res//German.txt", "res//Italian.txt" };
+	final static String outputPath = "res//dictionary_output";
+	
+	public static void main(String[] args) throws Exception {
+	    int res = ToolRunner.run(new Dictionary(), args);
+	    System.exit(res);
+	}
+	
+	@Override
+	public int run(String[] args) throws Exception {
+		Configuration conf = getConf();
+		conf.set("mapreduce.input.keyvaluelinerecordreader.key.value.separator", "\t");
+
+		Job job = Job.getInstance(conf, "mapreducedictionary");
+		
+		job.setJarByClass(this.getClass());
+		
+		job.setInputFormatClass(KeyValueTextInputFormat.class);
+		job.setMapperClass(DictionaryMapper.class);
+		
+		job.setReducerClass(DictionaryReducer.class);
+		
+		job.setOutputKeyClass(Text.class);
+		job.setOutputValueClass(Text.class);
+		
+		// Input Files angeben 
+		for (String file : inputFiles) {
+			FileInputFormat.addInputPath(job, new Path(file));	
+		}
+
+		// Output Ordner löschen
+		FileUtils.deleteDirectory(new File(outputPath)); 
+
+		// Output Path angeben 
+		FileOutputFormat.setOutputPath(job, new Path(outputPath));
+		
+	    // Job ausführen und Resultat abwarten
+	    return job.waitForCompletion(true) ? 0 : 1;
+	    
+	    
+		// Instanz laden
+		Job job = Job.getInstance(getConf(), "mapreducesaleanalysis");
+		
+		// Ausführendes Jar, aufgrund der Klasse (diese Klasse), setzen 
+		job.setJarByClass(this.getClass());
+		
+		// Eigene Mapper and Reducer Klasse setzen
+		job.setMapperClass(SaleAnalysisMapper.class);
+		job.setReducerClass(SaleAnalysisReducer.class);
+
+		// OutputFormat, von Key und Value, der Map-/Reduce-Funktion setzen
+		job.setMapOutputKeyClass(Text.class);
+		job.setMapOutputValueClass(DoubleWritable.class);
+		job.setOutputKeyClass(Text.class);
+		job.setOutputValueClass(DoubleWritable.class);	
+		
+		// OutputFormater-Klasse der Reduce-Funktion setzen, welche den Output formatiert
+		job.setOutputFormatClass(SaleAnalysisFileOutputFormat.class); 
+		
+		
+	    
+
+	}
+}

@@ -1,0 +1,34 @@
+package ch.fhnw.ddm.HadoopExercise.Dictionary;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
+/**
+ * Mapper, welcher aus den Inputdaten die Wörter (Englisch) und die Übersetzungen aufsplittet und rausschreibt
+ * 
+ * @author Denis Augsburger, Tobias Giess, Ralf Jeppesen
+ */
+public class DictionaryMapper extends Mapper<Text, Text, Text, Text> {
+	private Text translation = new Text();
+	
+	/**
+	 * Die eigentliche Map Funktion, welche die Kategorie und die Verkaufszahl rausfiltert
+	 * 
+	 * @param key Key
+	 * @param values Eine Zeile im File
+	 * @param context Context in welcher der Map-Output geschrieben wird
+	 * @output Pro Zeile im File ein Eintrag im Context mit [Key = Kategorie; Value = Verkaufszahl] (sofern Zeile gültig)
+	 */
+	@Override
+	public void map(Text key, Text value, Context context) throws IOException, InterruptedException {
+		String line = value.toString();
+		
+		for (String word : line.split(",")) {
+			translation.set(word.trim());
+			
+			context.write(key, translation);				
+		}
+	}
+}

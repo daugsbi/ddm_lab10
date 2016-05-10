@@ -1,0 +1,28 @@
+package ch.fhnw.ddm.HadoopExercise.SaleAnalysis;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+/**
+ * Berechnet die gesamten Verkaufszahlen pro Produktekategorie 
+ * @author Denis Augsburger, Tobias Giess, Ralf Jeppesen
+ */
+public class SaleAnalysisReducer extends Reducer<Text, DoubleWritable, Text, DoubleWritable> {
+	private DoubleWritable sum = new DoubleWritable();
+	
+	@Override
+	public void reduce(Text key, Iterable<DoubleWritable> values, Context context) throws IOException, InterruptedException {
+		double total = 0;
+		
+		for (DoubleWritable val : values) {
+			total += val.get();
+		}
+		
+		sum.set(total);
+		
+		context.write(key, sum);
+	}
+}

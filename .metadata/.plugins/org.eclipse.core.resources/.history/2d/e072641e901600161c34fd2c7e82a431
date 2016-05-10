@@ -1,0 +1,47 @@
+package ch.fhnw.ddm.HadoopExercise.SaleAnalysis;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.text.DecimalFormat;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.hadoop.conf.Configured;
+import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.RecordWriter;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.TaskAttemptContext;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.Tool;
+import org.apache.hadoop.util.ToolRunner;
+
+public class Copy_2_of_SaleAnalysisRecordWriter extends RecordWriter<Text, DoubleWritable> { 		 
+	final static DecimalFormat decimalFormat = new DecimalFormat("0.00"); 
+	final static String delimiter = "\t";
+	private DataOutputStream out; 
+	
+	public Copy_2_of_SaleAnalysisRecordWriter(DataOutputStream stream) { 
+		out = stream; 
+	} 
+	 
+    @Override 
+    public void close(TaskAttemptContext arg0) throws IOException, InterruptedException { 
+    	out.close(); 
+    } 
+	 
+    @Override 
+    public void write(Text key, DoubleWritable value) throws IOException, InterruptedException { 
+        String formattedAmount = decimalFormat.format(value.get()); 
+        
+        out.writeBytes(key.toString() + delimiter + formattedAmount + "\r\n"); 
+    } 
+}

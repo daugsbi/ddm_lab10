@@ -1,0 +1,33 @@
+package ch.fhnw.ddm.HadoopExercise.SaleAnalysis;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.DoubleWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
+public class SaleAnalysisMapper extends Mapper<LongWritable, Text, Text, DoubleWritable> {
+	final static int indexCategory = 3;
+	final static int indexAmount = 4;
+	
+	private Text category = new Text();
+	private DoubleWritable amount = new DoubleWritable();
+	
+	@Override
+	public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+		String line = value.toString();			
+		String[] values = line.split("\t");
+		
+		if (values.length > indexCategory && values.length > indexAmount) {				
+			try {
+				category.set(values[indexCategory]);
+				amount.set(Double.parseDouble(values[indexAmount]));	
+				
+				context.write(category, amount);
+			} catch (NumberFormatException e) {
+				// don't write
+			}	
+		}
+	}
+}
