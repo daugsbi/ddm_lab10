@@ -19,7 +19,7 @@ public class DictionaryMapper extends Mapper<Text, Text, Text, Text> {
 	 * @param key Wort
 	 * @param values Übersetzungen, getrennt
 	 * @param context Context in welcher der Map-Output geschrieben wird
-	 * @output Pro Zeile im File ein Eintrag im Context mit [Key = Kategorie; Value = Verkaufszahl] (sofern Zeile gültig)
+	 * @output Pro Zeile im File ein Eintrag im Context mit [Key = Englisches Wort; Value = Übersetzung]
 	 */
 	@Override
 	public void map(Text key, Text value, Context context) throws IOException, InterruptedException {
