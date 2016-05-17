@@ -1,4 +1,4 @@
-package ch.fhnw.ddm.HadoopExercise.SaleAnalysis;
+package ch.fhnw.ddm.hadoopexercise.saleanalysis;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

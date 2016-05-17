@@ -1,3 +1,4 @@
+package ch.fhnw.ddm;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.LongWritable;

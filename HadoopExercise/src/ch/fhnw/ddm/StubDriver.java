@@ -1,3 +1,4 @@
+package ch.fhnw.ddm;
 import org.apache.hadoop.mapreduce.Job;
 
 public class StubDriver {

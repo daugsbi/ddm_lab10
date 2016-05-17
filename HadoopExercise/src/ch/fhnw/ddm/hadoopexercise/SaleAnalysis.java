@@ -1,4 +1,4 @@
-package ch.fhnw.ddm.HadoopExercise;
+package ch.fhnw.ddm.hadoopexercise;
 
 import java.io.IOException;
 

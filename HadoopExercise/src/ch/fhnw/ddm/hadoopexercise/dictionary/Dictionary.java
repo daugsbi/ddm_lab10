@@ -1,4 +1,4 @@
-package ch.fhnw.ddm.HadoopExercise.Dictionary;
+package ch.fhnw.ddm.hadoopexercise.dictionary;
 
 import java.io.File;
 

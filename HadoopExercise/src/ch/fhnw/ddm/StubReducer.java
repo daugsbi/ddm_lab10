@@ -1,3 +1,4 @@
+package ch.fhnw.ddm;
 import java.io.IOException;
 
 import org.apache.hadoop.io.DoubleWritable;
